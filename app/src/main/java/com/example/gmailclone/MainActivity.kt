@@ -19,6 +19,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.gmailclone.components.GmailDrawerMenu
+import com.example.gmailclone.components.GmailFab
 import com.example.gmailclone.components.HomeAppBar
 import com.example.gmailclone.components.HomeBottomMenu
 import com.example.gmailclone.components.MailList
@@ -62,7 +63,11 @@ fun GmailApp() {
             modifier = Modifier.padding(10.dp), topBar = { HomeAppBar(drawerStates,coroutineScope) },
             bottomBar = {
              HomeBottomMenu()
+            },
+            floatingActionButton = {
+             GmailFab()
             }
+
 
 
 
