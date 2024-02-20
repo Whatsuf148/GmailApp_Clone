@@ -14,6 +14,8 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -50,6 +52,9 @@ fun GmailApp() {
   val coroutineScope = rememberCoroutineScope()
    val drawerStates = rememberDrawerState(initialValue = DrawerValue.Closed)
     val scrollState = rememberScrollState()
+    val openDialog =  remember{
+        mutableStateOf(false)
+    }
     ModalNavigationDrawer(
         drawerState = drawerStates,
         drawerContent = {
@@ -60,7 +65,7 @@ fun GmailApp() {
         }) {
         Scaffold(
 
-            modifier = Modifier.padding(10.dp), topBar = { HomeAppBar(drawerStates,coroutineScope) },
+            modifier = Modifier.padding(10.dp), topBar = { HomeAppBar(drawerStates,coroutineScope,openDialog) },
             bottomBar = {
              HomeBottomMenu()
             },

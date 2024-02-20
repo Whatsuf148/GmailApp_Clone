@@ -2,6 +2,7 @@ package com.example.gmailclone.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -19,6 +20,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -31,7 +33,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 @Composable
-fun HomeAppBar(scaffoldState: DrawerState ,scope: CoroutineScope){
+fun HomeAppBar(scaffoldState: DrawerState ,scope: CoroutineScope,openDialog: MutableState<Boolean>){
 
 
     Box(modifier = Modifier.padding(6.dp)){
@@ -58,7 +60,20 @@ fun HomeAppBar(scaffoldState: DrawerState ,scope: CoroutineScope){
                     modifier = Modifier
                         .size(20.dp)
                         .clip(CircleShape)
-                        .background(Color.Gray))
+                        .background(Color.Gray)
+                        .clickable {
+                            openDialog.value = true
+
+
+                        }
+
+
+                )
+                if(openDialog.value){
+                    AccountDialog(openDialog = openDialog)
+                }
+
+
 
 
             }
@@ -66,6 +81,7 @@ fun HomeAppBar(scaffoldState: DrawerState ,scope: CoroutineScope){
 
 
         }
+
     }
 
 }
